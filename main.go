@@ -22,6 +22,7 @@ type RequestInfo struct {
 	Headers     map[string][]string `json:"headers"`
 	QueryParams map[string][]string `json:"query_params"`
 	Body        string              `json:"body"`
+	ClientIP    string              `json:"client_ip"`
 }
 
 func echoHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +39,7 @@ func echoHandler(w http.ResponseWriter, r *http.Request) {
 		Headers:     r.Header,
 		QueryParams: r.URL.Query(),
 		Body:        string(body),
+		ClientIP:    r.RemoteAddr,
 	}
 
 	jsonResponse, err := json.MarshalIndent(info, "", "  ")
