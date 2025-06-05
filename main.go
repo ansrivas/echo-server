@@ -48,6 +48,7 @@ func echoHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println("Received request:", jsonResponse)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(jsonResponse)
